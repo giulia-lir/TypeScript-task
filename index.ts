@@ -17,10 +17,26 @@ const band = {
 console.log(band.members)
 
 // Add new prop `all` under `members`
+function addPropertyAll(existingObject : any) : any {
+    const all: string[] = [];
+    
+    existingObject.members.current.forEach((element : any) => {
+        all.push(element.name.toLowerCase())
+    });
 
-function addPropertyAll() {
+    existingObject.members.past.forEach((element : any) => {
+        all.push(element.name.toLowerCase())
+    });
 
+    const bandRevised = {
+        ...existingObject.members,
+        all: all,
+    }
+    return bandRevised
 }
+
+const objectWithNewProp = addPropertyAll(band);
+console.log(objectWithNewProp);
 
 /** 5.1. `all`: type is Array of string, contains all the members' name (both current and past)
 
