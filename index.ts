@@ -1,4 +1,21 @@
-const band = {
+interface BandMember {
+  name: string;
+  age: number;
+  plays: string[];
+}
+
+interface BandMembers {
+  current: BandMember[];
+  past: BandMember[];
+  all?: string[];
+}
+
+interface Band {
+  members: BandMembers;
+  plays?: object;
+}
+
+const band : Band = {
     members: {
         current: [
             {name: 'Sascha', age: 59, plays: ['vocals', 'synth', 'guitar', 'bass']},
@@ -14,39 +31,35 @@ const band = {
     }
 };
 
-console.log(band.members)
+console.log(band)
 
 // Add new prop `all` under `members`
-function addPropertyAll(existingObject : any) : any {
+function addPropertyAll(existingObject : Band) : Band {
     // 5.1. `all`: type is Array of string, contains all the members' name (both current and past)
     const all: string[] = [];
     
-    existingObject.members.current.forEach((element : any) => {
-        all.push(element.name.toLowerCase())
-    });
-
-    existingObject.members.past.forEach((element : any) => {
-        all.push(element.name.toLowerCase())
-    });
-
-    const bandRevised = {
+    existingObject.members.current
+      .concat(existingObject.members.past)
+      // 5.4. Sort `all` by members'`name` **ASC** 
+      .sort((a, b) => a.name.localeCompare(b.name))
+      // 5.3. Sort `all` by members' `age` **DESC**
+      .sort((a, b) => b.age - a.age)
+      .forEach((member) => {
+        // 5.2. *Lowercase* all the members' name in `all`
+        all.push(member.name.toLowerCase());
+      });
+  
+    const bandRevised : Band = {
+      ...existingObject,
+      members: {
         ...existingObject.members,
-        all: all,
-    }
-    return bandRevised
+        all,
+      },
+    };
+    return bandRevised;
 }
 
 const objectWithNewProp = addPropertyAll(band);
 console.log(objectWithNewProp);
-
-/** 
-
-    5.2. *Lowercase* all the members' name in `all`
-
-    5.3. Sort `all` by members' `age` **DESC**
-
-    5.4. Then sort `all` by members'`name` **ASC** (Notice: "gunter" is before "raymond" in the result) */
-
-
 
 // npm run start command
