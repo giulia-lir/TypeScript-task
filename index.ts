@@ -19,5 +19,3 @@ const band : Band = {
 
 const expected = addPropertiesToObject(band);
 console.log(expected);
-
-// npm run start command
