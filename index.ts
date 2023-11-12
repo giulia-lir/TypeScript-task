@@ -18,6 +18,7 @@ console.log(band.members)
 
 // Add new prop `all` under `members`
 function addPropertyAll(existingObject : any) : any {
+    // 5.1. `all`: type is Array of string, contains all the members' name (both current and past)
     const all: string[] = [];
     
     existingObject.members.current.forEach((element : any) => {
@@ -38,13 +39,13 @@ function addPropertyAll(existingObject : any) : any {
 const objectWithNewProp = addPropertyAll(band);
 console.log(objectWithNewProp);
 
-/** 5.1. `all`: type is Array of string, contains all the members' name (both current and past)
+/** 
 
     5.2. *Lowercase* all the members' name in `all`
 
-    5.3. Sort `all` by memebers' `age` **DESC**
+    5.3. Sort `all` by members' `age` **DESC**
 
-    5.4. Then sort `all` by memebers'`name` **ASC** (Notice: "gunter" is before "raymond" in the result) */
+    5.4. Then sort `all` by members'`name` **ASC** (Notice: "gunter" is before "raymond" in the result) */
 
 
 
