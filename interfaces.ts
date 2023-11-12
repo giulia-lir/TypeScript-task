@@ -9,7 +9,7 @@ export interface BandMembers {
     past: BandMember[];
     all?: string[];
 }
-  
+
 export interface Band {
     members: BandMembers;
     plays?: object;

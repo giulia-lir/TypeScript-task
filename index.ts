@@ -1,5 +1,5 @@
 import { addPropertiesToObject } from './objectFunction';
-import {Band, BandMembers, BandMember} from './interfaces';
+import { Band } from './interfaces';
 
 const band : Band = {
     members: {
