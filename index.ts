@@ -1,19 +1,4 @@
-interface BandMember {
-  name: string;
-  age: number;
-  plays: string[];
-}
-
-interface BandMembers {
-  current: BandMember[];
-  past: BandMember[];
-  all?: string[];
-}
-
-interface Band {
-  members: BandMembers;
-  plays?: object;
-}
+import {Band, BandMembers, BandMember} from './interfaces';
 
 const band : Band = {
     members: {
@@ -34,7 +19,7 @@ const band : Band = {
 console.log(band)
 
 // Add new prop `all` under `members`
-function addPropertyAll(existingObject : Band) : Band {
+function addPropertiesToObject(existingObject : Band) : Band {
     // 5.1. `all`: type is Array of string, contains all the members' name (both current and past)
     const all: string[] = [];
     
@@ -50,7 +35,6 @@ function addPropertyAll(existingObject : Band) : Band {
       });
   
     const bandRevised : Band = {
-      ...existingObject,
       members: {
         ...existingObject.members,
         all,
@@ -59,7 +43,7 @@ function addPropertyAll(existingObject : Band) : Band {
     return bandRevised;
 }
 
-const objectWithNewProp = addPropertyAll(band);
+const objectWithNewProp = addPropertiesToObject(band);
 console.log(objectWithNewProp);
 
 // npm run start command
